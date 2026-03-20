@@ -56,8 +56,6 @@ export const products: Product[] = [
             "Completely wire-free earbuds with dual-mic call quality and custom EQ profiles. Secure fit for all-day comfort during work or workouts.",
         image:
             "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=900&q=85",
-        hoverImage:
-            "https://images.unsplash.com/photo-1560707854-fb9a2f3e91e9?w=900&q=85",
         badge: "Popular",
         features: ["IPX5 Water Resistant", "30hr Total Battery", "Touch Controls"],
     },

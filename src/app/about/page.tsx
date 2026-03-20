@@ -7,7 +7,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function AboutPage() {
     return (
-        <section className="w-full min-h-screen pt-28 sm:pt-36 pb-24 bg-white">
+        <section className="w-full min-h-screen pt-28 sm:pt-36 pb-24 bg-[linear-gradient(180deg,#fbfaf7_0%,#ffffff_40%,#fbfaf8_100%)]">
             <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
                 {/* Header */}
                 <motion.div
@@ -19,7 +19,7 @@ export default function AboutPage() {
                     <p className="text-[11px] tracking-[0.3em] uppercase text-[#0a0a0a]/35 font-medium mb-4">
                         Our Story
                     </p>
-                    <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-[#0a0a0a] tracking-[-0.03em] mb-7">
+                    <h1 className="display-font text-4xl sm:text-5xl lg:text-[58px] font-semibold text-[#111418] tracking-[-0.02em] mb-7">
                         About MyChoices
                     </h1>
                     <p className="text-[15px] sm:text-base text-[#0a0a0a]/45 font-light leading-[1.8]">
@@ -81,7 +81,7 @@ export default function AboutPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 + i * 0.1, duration: 0.6, ease }}
-                            className="text-center space-y-4"
+                            className="text-center space-y-4 rounded-2xl border border-black/[0.07] bg-white/75 backdrop-blur-sm px-5 py-6"
                         >
                             <h3 className="text-lg font-bold text-[#0a0a0a] tracking-[-0.02em]">
                                 {value.title}

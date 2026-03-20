@@ -12,7 +12,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 const containerVariants = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.1 } },
+    visible: { transition: { staggerChildren: 0.08 } },
 };
 
 const cardVariants = {
@@ -36,7 +36,7 @@ function ProductCard({ product }: { product: Product }) {
                 onMouseLeave={() => setHovered(false)}
             >
                 <div className="relative aspect-[3/4] overflow-hidden">
-                    {/* Product image — no swap, subtle zoom on hover */}
+                    {/* Product image */}
                     <Image
                         src={product.image}
                         alt={product.name}
@@ -88,9 +88,19 @@ function ProductCard({ product }: { product: Product }) {
                 </div>
 
                 {/* Info below image */}
-                <div className="px-4 py-5 space-y-1.5">
+                <div className="px-4 py-4 space-y-1.5">
                     <p className="text-[10px] tracking-[0.25em] uppercase text-gray-400 font-medium">{product.category}</p>
-                    <h3 className="text-[15px] font-medium text-[#0a0a0a] group-hover:text-[#0a0a0a]/60 transition-colors duration-300">{product.name}</h3>
+                    <h3 className="text-base font-medium text-[#0a0a0a] group-hover:text-[#0a0a0a]/60 transition-colors duration-300">{product.name}</h3>
+                    {/* Feature chips */}
+                    {product.features && (
+                        <div className="flex flex-wrap gap-1.5 pt-1">
+                            {product.features.slice(0, 2).map((f) => (
+                                <span key={f} className="text-[9px] tracking-wide text-gray-400 border border-gray-200 rounded-full px-2.5 py-0.5">
+                                    {f}
+                                </span>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </Link>
         </motion.div>
@@ -101,21 +111,24 @@ export default function BestSellers() {
     const bestSellers = products.slice(0, 4);
 
     return (
-        <section className="relative w-full py-24 sm:py-32 bg-[#fafaf8] overflow-hidden">
+        <section className="relative w-full pt-6 pb-8 sm:pt-8 sm:pb-10 bg-[#fafaf8] overflow-hidden -mt-2">
             {/* Ambient blobs */}
             <div className="ambient-blob w-[350px] h-[350px] bg-stone-300 top-[5%] right-[-5%]" />
             <div className="ambient-blob-alt w-[300px] h-[300px] bg-slate-300 bottom-[10%] left-[-3%]" />
 
-            <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 sm:mb-16">
-                    <div>
-                        <div className="overflow-hidden mb-3">
+            <div className="w-full max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-10 relative z-[2]">
+                {/* Subtle divider */}
+                <div className="section-divider w-full mb-8 sm:mb-10" />
+
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
+                    <div className="flex-1">
+                        <div className="overflow-hidden mb-2">
                             <motion.p
                                 initial={{ y: "100%" }}
                                 whileInView={{ y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, ease }}
-                                className="text-[11px] tracking-[0.3em] uppercase text-gray-400 font-medium"
+                                className="text-[12px] tracking-[0.3em] uppercase text-gray-400 font-medium"
                             >
                                 Top Picks
                             </motion.p>
@@ -126,11 +139,22 @@ export default function BestSellers() {
                                 whileInView={{ y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.06, duration: 0.7, ease }}
-                                className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-[#0a0a0a] tracking-[-0.03em]"
+                                className="text-5xl sm:text-6xl lg:text-[64px] font-bold text-[#0a0a0a] tracking-[-0.03em]"
                             >
                                 Best Sellers
                             </motion.h2>
                         </div>
+                        {/* Bigger supportive text */}
+                        <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2, duration: 0.6, ease }}
+                            className="text-sm sm:text-base text-gray-400 font-light mt-3 max-w-lg leading-relaxed"
+                        >
+                            Our most loved products — chosen by thousands of happy customers.
+                            Premium quality, guaranteed satisfaction.
+                        </motion.p>
                     </div>
                     <motion.div
                         initial={{ opacity: 0, x: 16 }}
@@ -155,14 +179,36 @@ export default function BestSellers() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-80px" }}
-                    className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6"
+                    className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 lg:gap-4"
                 >
                     {bestSellers.map((product) => (
                         <ProductCard key={product.id} product={product} />
+                    ))}
+                </motion.div>
+
+                {/* Floating info chips below the grid */}
+                <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2, duration: 0.6, ease }}
+                    className="flex flex-wrap items-center justify-center gap-3 mt-8 sm:mt-10"
+                >
+                    {[
+                        { label: "Fast Delivery" },
+                        { label: "2-Year Warranty" },
+                        { label: "Easy Returns" },
+                        { label: "Premium Quality" },
+                    ].map((item) => (
+                        <span
+                            key={item.label}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-black/[0.04] text-[11px] sm:text-[12px] text-gray-500 font-medium shadow-sm"
+                        >
+                            {item.label}
+                        </span>
                     ))}
                 </motion.div>
             </div>
         </section>
     );
 }
-

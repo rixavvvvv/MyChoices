@@ -6,7 +6,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function ContactPage() {
     return (
-        <section className="w-full min-h-screen pt-28 sm:pt-36 pb-24 bg-white">
+        <section className="w-full min-h-screen pt-28 sm:pt-36 pb-24 bg-[linear-gradient(180deg,#fbfaf7_0%,#ffffff_40%,#fbfaf8_100%)]">
             <div className="w-full max-w-3xl mx-auto px-5 sm:px-8 lg:px-10">
                 {/* Header */}
                 <motion.div
@@ -18,7 +18,7 @@ export default function ContactPage() {
                     <p className="text-[11px] tracking-[0.3em] uppercase text-[#0a0a0a]/35 font-medium mb-4">
                         Get in Touch
                     </p>
-                    <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-[#0a0a0a] tracking-[-0.03em] mb-7">
+                    <h1 className="display-font text-4xl sm:text-5xl lg:text-[58px] font-semibold text-[#111418] tracking-[-0.02em] mb-7">
                         Contact Us
                     </h1>
                     <p className="text-[15px] text-[#0a0a0a]/45 font-light leading-[1.8] max-w-md mx-auto">
@@ -31,7 +31,7 @@ export default function ContactPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2, duration: 0.6, ease }}
-                    className="space-y-8"
+                    className="space-y-8 rounded-2xl border border-black/[0.08] bg-white/70 backdrop-blur-sm px-6 py-7 sm:px-8 sm:py-9"
                     onSubmit={(e) => e.preventDefault()}
                 >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">

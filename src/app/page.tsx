@@ -5,11 +5,11 @@ import FeaturedBanner from "@/components/FeaturedBanner";
 
 export default function Home() {
     return (
-        <>
+        <div className="relative overflow-hidden">
             <Hero />
             <Categories />
             <BestSellers />
             <FeaturedBanner />
-        </>
+        </div>
     );
 }

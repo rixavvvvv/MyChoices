@@ -19,21 +19,24 @@ const itemVariants = {
 
 export default function Categories() {
     return (
-        <section className="relative w-full py-24 sm:py-32 bg-white overflow-hidden">
-            {/* Top separator */}
-            <div className="section-divider w-full absolute top-0" />
+        <section className="relative w-full pt-14 pb-6 sm:pt-16 sm:pb-8 bg-white overflow-hidden -mt-6">
+            {/* Top gradient transition from hero */}
+            <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#fafaf8] to-transparent pointer-events-none" />
 
-            <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+            {/* Subtle background element */}
+            <div className="absolute top-[30%] right-[-10%] w-[400px] h-[400px] bg-gradient-radial from-stone-100/60 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+            <div className="w-full max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-10">
                 {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 sm:mb-16">
-                    <div>
-                        <div className="overflow-hidden mb-3">
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
+                    <div className="flex-1">
+                        <div className="overflow-hidden mb-2">
                             <motion.p
                                 initial={{ y: "100%" }}
                                 whileInView={{ y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, ease }}
-                                className="text-[11px] tracking-[0.3em] uppercase text-gray-400 font-medium"
+                                className="text-[12px] tracking-[0.3em] uppercase text-gray-400 font-medium"
                             >
                                 Browse
                             </motion.p>
@@ -44,11 +47,22 @@ export default function Categories() {
                                 whileInView={{ y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.06, duration: 0.7, ease }}
-                                className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-[#0a0a0a] tracking-[-0.03em]"
+                                className="text-5xl sm:text-6xl lg:text-[64px] font-bold text-[#0a0a0a] tracking-[-0.03em]"
                             >
                                 Categories
                             </motion.h2>
                         </div>
+                        {/* Supportive text — larger */}
+                        <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2, duration: 0.6, ease }}
+                            className="text-sm sm:text-base text-gray-400 font-light mt-3 max-w-lg leading-relaxed"
+                        >
+                            Explore curated collections tailored to every lifestyle.
+                            Find the perfect tech for your world.
+                        </motion.p>
                     </div>
                     <motion.div
                         initial={{ opacity: 0, x: 16 }}
@@ -68,19 +82,19 @@ export default function Categories() {
                     </motion.div>
                 </div>
 
-                {/* Grid */}
+                {/* Grid — taller cards, less gap */}
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-80px" }}
-                    className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5"
+                    className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3"
                 >
                     {categories.map((cat) => (
                         <motion.div key={cat.slug} variants={itemVariants}>
                             <Link
                                 href={`/collection?category=${cat.slug}`}
-                                className="group block relative aspect-[3/4] overflow-hidden rounded-xl bg-gray-100"
+                                className="group block relative aspect-[2/3] sm:aspect-[3/4] overflow-hidden rounded-xl bg-gray-100"
                             >
                                 <Image
                                     src={cat.image}
@@ -100,14 +114,21 @@ export default function Categories() {
                                     </svg>
                                 </div>
 
+                                {/* Count badge */}
+                                <div className="absolute top-4 left-4">
+                                    <span className="px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-[10px] font-medium text-white/70 tracking-wider uppercase border border-white/10">
+                                        {cat.count}
+                                    </span>
+                                </div>
+
                                 {/* Text */}
                                 <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
-                                    <h3 className="text-lg sm:text-xl font-semibold text-white tracking-tight leading-snug group-hover:-translate-y-1 transition-transform duration-400">
+                                    <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight leading-snug group-hover:-translate-y-1 transition-transform duration-400">
                                         {cat.name}
                                     </h3>
                                     <div className="overflow-hidden mt-1">
                                         <p className="text-[13px] text-white/50 translate-y-full group-hover:translate-y-0 transition-transform duration-400 delay-75">
-                                            {cat.count}
+                                            Explore →
                                         </p>
                                     </div>
                                 </div>

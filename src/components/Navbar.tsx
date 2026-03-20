@@ -32,7 +32,7 @@ export default function Navbar() {
     return (
         <header
             className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled
-                ? "bg-white/85 backdrop-blur-2xl border-b border-black/[0.06] shadow-[0_1px_20px_rgba(0,0,0,0.04)]"
+                ? "bg-[#faf8f2]/85 backdrop-blur-2xl border-b border-black/[0.06] shadow-[0_8px_30px_rgba(20,25,32,0.08)]"
                 : "bg-transparent"
                 }`}
         >
@@ -41,7 +41,7 @@ export default function Navbar() {
 
                     {/* Logo */}
                     <Link href="/" className="relative z-50 flex-shrink-0">
-                        <span className="text-xl sm:text-2xl font-bold tracking-[-0.03em] text-[#0a0a0a]">
+                        <span className="display-font text-2xl sm:text-3xl font-semibold tracking-[-0.02em] text-[#111418]">
                             MyChoices
                         </span>
                     </Link>
@@ -52,7 +52,7 @@ export default function Navbar() {
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="hover-underline text-sm font-medium text-[#0a0a0a]/55 hover:text-[#0a0a0a] transition-colors duration-300"
+                                className="hover-underline text-sm font-medium text-[#141920]/65 hover:text-[#141920] transition-colors duration-300"
                             >
                                 {link.name}
                             </Link>

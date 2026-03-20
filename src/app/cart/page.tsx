@@ -11,7 +11,7 @@ export default function CartPage() {
     const { toast } = useToast();
 
     return (
-        <section className="w-full min-h-screen pt-28 sm:pt-36 pb-24 bg-white">
+        <section className="w-full min-h-screen pt-28 sm:pt-36 pb-24 bg-[linear-gradient(180deg,#fbfaf7_0%,#ffffff_40%,#fbfaf8_100%)]">
             <div className="w-full max-w-4xl mx-auto px-5 sm:px-8 lg:px-10">
                 {/* Header */}
                 <motion.div
@@ -23,7 +23,7 @@ export default function CartPage() {
                     <p className="text-[11px] tracking-[0.3em] uppercase text-[#0a0a0a]/35 font-medium mb-4">
                         Shopping
                     </p>
-                    <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-[#0a0a0a] tracking-[-0.03em]">
+                    <h1 className="display-font text-4xl sm:text-5xl lg:text-[58px] font-semibold text-[#111418] tracking-[-0.02em]">
                         Your Cart {totalItems > 0 && <span className="text-xl font-light text-[#0a0a0a]/25">({totalItems})</span>}
                     </h1>
                 </motion.div>

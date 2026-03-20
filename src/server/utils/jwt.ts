@@ -1,6 +1,12 @@
 import { SignJWT, jwtVerify } from "jose";
 
-const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+function getJwtSecret(): Uint8Array {
+  const jwtSecret = process.env.JWT_SECRET;
+  if (!jwtSecret) {
+    throw new Error("JWT_SECRET is not set");
+  }
+  return new TextEncoder().encode(jwtSecret);
+}
 
 export interface JwtPayload {
   sub: string;
@@ -9,6 +15,7 @@ export interface JwtPayload {
 }
 
 export async function signToken(payload: JwtPayload): Promise<string> {
+  const secret = getJwtSecret();
   return new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
@@ -17,6 +24,7 @@ export async function signToken(payload: JwtPayload): Promise<string> {
 }
 
 export async function verifyToken(token: string): Promise<JwtPayload> {
+  const secret = getJwtSecret();
   const { payload } = await jwtVerify(token, secret);
   return payload as unknown as JwtPayload;
 }

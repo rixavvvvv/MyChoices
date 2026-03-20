@@ -7,12 +7,17 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
+        "postinstall": "prisma generate",
         "db:generate": "prisma generate",
         "db:push": "prisma db push",
         "db:migrate": "prisma migrate dev",
+        "db:deploy": "prisma migrate deploy",
         "db:studio": "prisma studio",
         "db:seed": "tsx prisma/seed.ts",
         "db:reset": "prisma migrate reset"
+    },
+    "engines": {
+        "node": ">=20.0.0"
     },
     "prisma": {
         "seed": "tsx prisma/seed.ts"
