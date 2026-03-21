@@ -37,7 +37,7 @@ export default function RootLayout({
                         <ToastProvider>
                             <Navbar />
                             <main className="w-full overflow-x-hidden">{children}</main>
-                            <div className="mt-20 h-8 border-t border-gray-200 bg-white" />
+                            <div className="mt-6 h-px border-t border-gray-200 bg-transparent" />
                             <Footer />
                         </ToastProvider>
                     </CartProvider>

@@ -34,32 +34,21 @@ function ProductCard({ product }: { product: Product }) {
 
   return (
     <div
-      className="group relative"
+      className="group relative transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <Link href={`/product/${product.id}`} className="block">
-        <div className="relative aspect-square overflow-hidden bg-[#f5f5f3] rounded-xl">
-          {/* Primary image */}
+        <div className="relative aspect-[4/5] overflow-hidden bg-[#f5f5f3] rounded-xl border border-black/[0.05]">
+          {/* Single product image with subtle home-style hover zoom */}
           <Image
             src={product.image}
             alt={product.name}
             fill
-            className={`object-cover transition-all duration-700 ${hovered && product.hoverImage ? "opacity-0 scale-105" : "opacity-100 scale-100"
+            className={`object-cover transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${hovered ? "scale-[1.03]" : "scale-100"
               }`}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
-          {/* Hover image */}
-          {product.hoverImage && (
-            <Image
-              src={product.hoverImage}
-              alt={product.name}
-              fill
-              className={`object-cover transition-all duration-700 absolute inset-0 ${hovered ? "opacity-100 scale-100" : "opacity-0 scale-105"
-                }`}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-          )}
           {product.badge && (
             <span className="absolute top-4 left-4 px-3 py-1.5 text-[9px] font-semibold tracking-[0.15em] uppercase bg-[#0a0a0a] text-white rounded-full z-10">
               {product.badge}
@@ -100,13 +89,14 @@ function ProductCard({ product }: { product: Product }) {
             </button>
           </div>
         </div>
-        <div className="py-4 space-y-1.5">
+        <div className="py-3.5 space-y-1">
           <p className="text-[10px] tracking-[0.25em] uppercase text-[#0a0a0a]/30 font-medium">
             {product.category}
           </p>
           <h3 className="text-sm font-medium text-[#0a0a0a] group-hover:opacity-60 transition-opacity duration-300">
             {product.name}
           </h3>
+          <div className="h-px w-full bg-gradient-to-r from-black/[0.08] to-transparent mt-1" />
         </div>
       </Link>
     </div>
@@ -115,14 +105,14 @@ function ProductCard({ product }: { product: Product }) {
 
 export default function CollectionPage() {
   return (
-    <section className="w-full min-h-screen pt-28 sm:pt-36 pb-24 bg-[linear-gradient(180deg,#fbfaf7_0%,#ffffff_40%,#fbfaf8_100%)]">
-      <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+    <section className="w-full min-h-screen pt-24 sm:pt-28 pb-14 sm:pb-16 bg-gradient-to-b from-white to-gray-50">
+      <div className="w-full max-w-[1300px] mx-auto px-6 sm:px-8 lg:px-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16 sm:mb-20"
+          className="text-center mb-8 sm:mb-9"
         >
           <p className="text-[11px] tracking-[0.3em] uppercase text-[#0a0a0a]/35 font-medium mb-4">
             All Products
@@ -130,14 +120,21 @@ export default function CollectionPage() {
           <h1 className="display-font text-4xl sm:text-5xl lg:text-[58px] font-semibold text-[#111418] tracking-[-0.02em]">
             Collection
           </h1>
+          <p className="text-sm text-gray-500 mt-3">
+            Explore our curated premium tech collection
+          </p>
         </motion.div>
+
+        <div className="mb-5 text-[11px] tracking-[0.16em] uppercase text-[#0a0a0a]/40 font-medium text-right">
+          {products.length} Products
+        </div>
 
         {/* Products Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6"
         >
           {products.map((product) => (
             <motion.div key={product.id} variants={cardVariants}>
